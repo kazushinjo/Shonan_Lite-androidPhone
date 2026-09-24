@@ -156,6 +156,30 @@ It accepts the same options as `install.sh` (`--build-only`, `--clean`, `--relea
 ./cli-install.sh --build-only
 ```
 
+## 免責事項
+
+1. **無保証・自己責任**  
+   本ソフトウェアは現状のまま(AS IS)で提供され、動作、品質、特定の目的への適合性を含め、いかなる保証もありません。
+   本ソフトウェアの使用または使用できないことによって生じた、機器の破損、データの消失、電波障害、その他一切の損害について、
+   開発者は責任を負いません。ご自身の責任においてご利用ください。
+2. **免許と法令の順守**  
+   本ソフトウェアは、アマチュア無線のDATV(デジタルATV)実験のための送受信ソフトウェアです。電波を送信するには、運用する
+   国・地域の法令に基づく免許が必要です(日本国内ではアマチュア局の免許)。周波数、空中線電力、電波の型式、運用できる範囲などの
+   法令(日本国内では電波法および関係規則)を守ってください。免許のない送信や、免許の範囲を超えた送信は、法令違反となることが
+   あります。本ソフトウェアは、設定された周波数・出力・変調方式が法令に適合していることを確認も保証もしません。
+   送信の内容と結果は、すべて使用者の責任です。
+3. **機器の取り扱い**  
+   PlutoのTXとRXの接続、外部アンプ(PA)・アッテネータ・アンテナの接続、送信出力の設定を誤ると、機器を破損したり、
+   他の無線局へ障害を与えたりするおそれがあります。機器の仕様を確認し、使用者の責任で行ってください。
+   特に、オンデバイス復調でRFループバック試験を行うときは、TXをRXへ直接接続せず、40 dB以上の減衰器を介してください。
+4. **第三者ソフトウェアとライセンス**  
+   本ソフトウェアは、FFmpeg、aff3ct、StreamPU、libiio、GNU Radio、gr-dvbs2rx、VOLK、Boost、GMP、spdlog、libxml2、
+   AndroidX(Jetpack Compose・CameraX)、SSHJ、Bouncy Castleなどの第三者ソフトウェアを利用・同梱します。
+   それぞれのライセンスに従います。本ソフトウェア自体は GNU General Public License v3(またはそれ以降のバージョン)の下で
+   提供されます(下記「ライセンス」参照)。
+5. **動作について**  
+   ご使用の端末・環境によって動作が異なる場合や、未発見の不具合が含まれる可能性があります。
+
 ## クレジット
 
 - 受信部の方式考案・受信部原システム設計: 山崎慎慈氏(JE1BTA) — `rpi-dvbs2-receiver-gui`の設計に基づく
@@ -186,6 +210,31 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
 
 ライセンス全文は<https://www.gnu.org/licenses/gpl-3.0.html>を参照してください。
+
+## Disclaimer
+
+1. **No warranty; use at your own risk**  
+   This software is provided "AS IS" without warranty of any kind, including any warranty of operation, quality or fitness for
+   a particular purpose. The developers accept no liability for any damage arising from the use of, or inability to use, this
+   software, including damage to equipment, loss of data and radio interference. Use it at your own risk.
+2. **Licensing and compliance with the law**  
+   This software is for amateur-radio DATV (digital ATV) experiments. Transmitting requires a license under the laws of the
+   country or region where you operate (in Japan, an amateur station license). Observe the applicable laws on frequency,
+   transmitter power, emission type and permitted operation (in Japan, the Radio Act and related regulations). Transmitting
+   without a license, or beyond the scope of your license, may violate the law. This software neither checks nor guarantees
+   that the configured frequency, power and modulation comply with the law. You are solely responsible for what you transmit
+   and for the results.
+3. **Handling of equipment**  
+   Wrong connections between the Pluto's TX and RX, wrong external amplifier (PA), attenuator or antenna connections, or wrong
+   transmit power settings may damage equipment or interfere with other stations. Check the specifications of your equipment
+   and do this at your own responsibility. In particular, when running an RF loopback test with on-device demodulation, never
+   connect TX directly to RX; use an attenuator of 40 dB or more.
+4. **Third-party software and license**  
+   This software uses and bundles third-party software such as FFmpeg, aff3ct, StreamPU, libiio, GNU Radio, gr-dvbs2rx, VOLK,
+   Boost, GMP, spdlog, libxml2, AndroidX (Jetpack Compose, CameraX), SSHJ and Bouncy Castle, each under its own license.
+   This software itself is provided under the GNU General Public License v3 (or any later version); see "License" below.
+5. **About behavior**  
+   Behavior may differ depending on your device and environment, and undiscovered defects may remain.
 
 ## Credits
 
