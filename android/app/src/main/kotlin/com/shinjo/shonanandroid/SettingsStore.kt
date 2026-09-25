@@ -59,7 +59,9 @@ object SettingsStore {
             // 受信音量は起動時に必ず初期値を優先する。保存済みの音量は
             // セッション中の変更には使うが、次回起動時には読み込まない。
             rxVolume = default.rxVolume,
-            useOnDeviceGRDVBS2Rx = prefs.getBoolean(Keys.USE_ON_DEVICE_DVBS2_RX, default.useOnDeviceGRDVBS2Rx),
+            // オンデバイス復調は起動時に必ずOFF(初期値)で始める。保存済みの値は
+            // セッション中の変更には使うが、次回起動時には読み込まない。
+            useOnDeviceGRDVBS2Rx = default.useOnDeviceGRDVBS2Rx,
             dvbs2Rolloff = prefs.getFloat(Keys.DVBS2_ROLLOFF, default.dvbs2Rolloff.toFloat()).toDouble(),
             useFrontCamera = prefs.getBoolean(Keys.USE_FRONT_CAMERA, default.useFrontCamera),
             usePhotoSource = prefs.getBoolean(Keys.USE_PHOTO_SOURCE, default.usePhotoSource),
