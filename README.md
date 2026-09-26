@@ -1,4 +1,4 @@
-# Shonan_Lite-doroidPhone
+# Shonan_Lite-androidPhone
 
 Pluto直結DVB-S2トランシーバー「Shonan」のAndroidスマートフォン版(`android/`)。タブレット版
 [Shonan_Lite-android](https://github.com/kazushinjo/Shonan_Lite-android)を元に、狭い画面幅に合わせて
@@ -42,15 +42,15 @@ single screen whose functions are switched with tabs at the top, to fit a narrow
 マシンであれば、`bootstrap.sh`だけ先に取得してから実行することでclone不要で始められる:
 
 ```sh
-gh api repos/kazushinjo/Shonan_Lite-doroidPhone/contents/bootstrap.sh \
+gh api repos/kazushinjo/Shonan_Lite-androidPhone/contents/bootstrap.sh \
   --jq '.content' | base64 -d > bootstrap.sh
 chmod +x bootstrap.sh
-./bootstrap.sh                       # $HOME/Shonan_Lite-doroidPhone へclone
+./bootstrap.sh                       # $HOME/Shonan_Lite-androidPhone へclone
 ./bootstrap.sh ~/path/to/dir         # clone先を指定する場合
 ./bootstrap.sh ~/path/to/dir --build-only  # install.shへの追加引数も渡せる
 ```
 
-git-lfsが未インストールなら自動で`brew install git-lfs`を試みる。既に`~/Shonan_Lite-doroidPhone`
+git-lfsが未インストールなら自動で`brew install git-lfs`を試みる。既に`~/Shonan_Lite-androidPhone`
 等にcloneが存在する場合は`git pull --ff-only`で更新してから続行する。
 
 ### 既にクローン済みの場合の手順
@@ -106,16 +106,16 @@ already signed in with `gh auth login`, you can fetch just `bootstrap.sh` first 
 run it to get started without cloning by hand:
 
 ```sh
-gh api repos/kazushinjo/Shonan_Lite-doroidPhone/contents/bootstrap.sh \
+gh api repos/kazushinjo/Shonan_Lite-androidPhone/contents/bootstrap.sh \
   --jq '.content' | base64 -d > bootstrap.sh
 chmod +x bootstrap.sh
-./bootstrap.sh                       # clones to $HOME/Shonan_Lite-doroidPhone
+./bootstrap.sh                       # clones to $HOME/Shonan_Lite-androidPhone
 ./bootstrap.sh ~/path/to/dir         # clone to a specific directory
 ./bootstrap.sh ~/path/to/dir --build-only  # extra args are passed through to install.sh
 ```
 
 If git-lfs isn't installed, it automatically tries `brew install git-lfs`. If a clone
-already exists (e.g. under `~/Shonan_Lite-doroidPhone`), it updates it with `git pull --ff-only`
+already exists (e.g. under `~/Shonan_Lite-androidPhone`), it updates it with `git pull --ff-only`
 before continuing.
 
 ### Steps if you already have a clone
