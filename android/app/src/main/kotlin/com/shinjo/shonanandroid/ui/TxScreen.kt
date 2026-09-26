@@ -104,7 +104,7 @@ fun TxScreen(viewModel: AppViewModel, onNavigate: (String) -> Unit) {
             ) {
                 // ★RxScreenの受信映像と同様、送信元も1280x720(16:9)でエンコードされるため
                 // fillMaxSize()で単純に引き伸ばさず、同じ16:9でアスペクト比を保って中央に
-                // レターボックス表示する([[shonan-lite-doroidphone-target]]でのRX側修正と対称)。
+                // レターボックス表示する([[shonan-lite-androidphone-target]]でのRX側修正と対称)。
                 Box(modifier = Modifier.fillMaxHeight().aspectRatio(16f / 9f, matchHeightConstraintsFirst = true)) {
                     if (settings.usePhotoSource) {
                         PhotoPreview(

@@ -17,7 +17,7 @@ import androidx.compose.ui.viewinterop.AndroidView
  *  destinationではなくタブ内コンテンツ(上部にTabRow等の兄弟Composableがある)に
  *  なった際、透過範囲の計算がComposeのレイアウト境界と食い違い、TabRowまで含めて
  *  黒く抜けてしまう不具合が起きた。TextureViewは通常のView合成に参加するため
- *  この問題が起きない([[shonan-lite-doroidphone-target]]でのタブ化対応)。 */
+ *  この問題が起きない([[shonan-lite-androidphone-target]]でのタブ化対応)。 */
 @Composable
 fun RxVideoView(
     modifier: Modifier = Modifier,
