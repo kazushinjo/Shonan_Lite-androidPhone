@@ -270,7 +270,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
 
-ライセンス全文は<https://www.gnu.org/licenses/gpl-3.0.html>を参照してください。
+ライセンス全文は[LICENSE](LICENSE)を参照してください(<https://www.gnu.org/licenses/gpl-3.0.html>にも掲載されています)。
 
 ## Disclaimer
 
@@ -327,4 +327,4 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
 
-See <https://www.gnu.org/licenses/gpl-3.0.html> for the full license text.
+See [LICENSE](LICENSE) for the full license text (also available at <https://www.gnu.org/licenses/gpl-3.0.html>).
