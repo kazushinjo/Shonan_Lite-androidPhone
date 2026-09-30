@@ -14,6 +14,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
@@ -123,6 +124,34 @@ fun SettingsScreen(viewModel: AppViewModel, onNavigate: (String) -> Unit) {
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
+
+            Text(settings.t("PA_Power/PTTコントローラ (ESP32)", "PA_Power/PTT Controller (ESP32)"), style = MaterialTheme.typography.titleMedium)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Switch(
+                    checked = settings.pttControllerEnabled,
+                    onCheckedChange = { enabled -> viewModel.updateSettings { it.copy(pttControllerEnabled = enabled) } },
+                )
+                Text(settings.t("ESP32 W5500を使用する", "Use ESP32 W5500"), modifier = Modifier.padding(start = 8.dp))
+            }
+            OutlinedTextField(
+                value = settings.pttControllerHost,
+                onValueChange = { host -> viewModel.updateSettings { it.copy(pttControllerHost = host) } },
+                enabled = settings.pttControllerEnabled,
+                label = { Text(settings.t("ESP32のIPアドレス", "ESP32 IP address")) },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            Text(
+                settings.t(
+                    "ONにすると、送信開始/終了に連動してPTTを(GET /tx?state=on|off)、アプリ起動の5秒後とアプリ終了時に"
+                        + "12V電源(Pluto含む)を(GET /ch?idx=0&state=on|off)ESP32経由で自動でON/OFFします。"
+                        + "ESP32が応答しなくても送受信はそのまま行います。OFFにしてもIPアドレスは保持されます。",
+                    "When on, the ESP32 switches PTT with TX start/stop (GET /tx?state=on|off), and the 12 V power "
+                        + "(including the Pluto) 5 seconds after app start and at app exit (GET /ch?idx=0&state=on|off). "
+                        + "TX/RX still work if the ESP32 does not respond. The IP address is kept when turned off.",
+                ),
+                style = MaterialTheme.typography.bodySmall,
+            )
         }
     }
 

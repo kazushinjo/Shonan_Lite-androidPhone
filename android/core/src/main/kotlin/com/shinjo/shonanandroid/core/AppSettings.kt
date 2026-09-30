@@ -185,7 +185,17 @@ data class AppSettings(
     // 機器診断用周波数(★運用メモ)
     var useCustomLoFrequency: Boolean = false,
     var customLoFrequencyHz: Long = BandProfile.default.loHz,
+
+    // PA_Power/PTTコントローラ(ESP32+W5500、hardware/W5500_PA_PTT_Control)
+    /** 設定画面の「ESP32 W5500を使用する」。OFFならIPアドレスを保持したまま連携しない。 */
+    var pttControllerEnabled: Boolean = false,
+    /** ESP32のIPアドレス(ファームウェアの初期値は192.168.0.100)。 */
+    var pttControllerHost: String = "192.168.0.100",
 ) {
+    /** 連携に使うESP32のアドレス。使用しない設定または空欄なら""。 */
+    val activePttControllerHost: String
+        get() = if (pttControllerEnabled) pttControllerHost.trim() else ""
+
     /** 診断機能が実際に使うLO周波数(Hz)。バンド選択の代表値と手動入力のどちらかを解決する。 */
     val effectiveLoHz: Long
         get() = if (useCustomLoFrequency) customLoFrequencyHz else selectedBand.loHz

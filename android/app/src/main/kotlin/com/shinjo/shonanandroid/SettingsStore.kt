@@ -41,6 +41,8 @@ object SettingsStore {
         const val MODULATION_SCHEME = "modulationScheme"
         const val USE_CUSTOM_LO_FREQUENCY = "useCustomLoFrequency"
         const val CUSTOM_LO_FREQUENCY_HZ = "customLoFrequencyHz"
+        const val PTT_CONTROLLER_ENABLED = "pttControllerEnabled"
+        const val PTT_CONTROLLER_HOST = "pttControllerHost"
     }
 
     fun load(context: Context): AppSettings {
@@ -78,6 +80,8 @@ object SettingsStore {
             modulationScheme = prefs.getString(Keys.MODULATION_SCHEME, null)?.let { runCatching { ModulationScheme.valueOf(it) }.getOrNull() } ?: default.modulationScheme,
             useCustomLoFrequency = prefs.getBoolean(Keys.USE_CUSTOM_LO_FREQUENCY, default.useCustomLoFrequency),
             customLoFrequencyHz = prefs.getLong(Keys.CUSTOM_LO_FREQUENCY_HZ, default.customLoFrequencyHz),
+            pttControllerEnabled = prefs.getBoolean(Keys.PTT_CONTROLLER_ENABLED, default.pttControllerEnabled),
+            pttControllerHost = prefs.getString(Keys.PTT_CONTROLLER_HOST, null) ?: default.pttControllerHost,
         )
     }
 
@@ -108,6 +112,8 @@ object SettingsStore {
             putString(Keys.MODULATION_SCHEME, settings.modulationScheme.name)
             putBoolean(Keys.USE_CUSTOM_LO_FREQUENCY, settings.useCustomLoFrequency)
             putLong(Keys.CUSTOM_LO_FREQUENCY_HZ, settings.customLoFrequencyHz)
+            putBoolean(Keys.PTT_CONTROLLER_ENABLED, settings.pttControllerEnabled)
+            putString(Keys.PTT_CONTROLLER_HOST, settings.pttControllerHost)
             apply()
         }
     }
