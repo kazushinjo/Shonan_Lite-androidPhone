@@ -40,6 +40,7 @@ object SettingsStore {
         const val SYMBOL_RATE_MSPS = "symbolRateMsps"
         const val FEC_RATE = "fecRate"
         const val FEC_AUTO = "fecAuto"
+        const val USE_H265 = "useH265"
         const val PLUTO_APSK_CAPABLE = "plutoApskCapable"
         const val MODULATION_SCHEME = "modulationScheme"
         const val USE_CUSTOM_LO_FREQUENCY = "useCustomLoFrequency"
@@ -87,6 +88,7 @@ object SettingsStore {
             pttControllerEnabled = prefs.getBoolean(Keys.PTT_CONTROLLER_ENABLED, default.pttControllerEnabled),
             pttControllerHost = prefs.getString(Keys.PTT_CONTROLLER_HOST, null) ?: default.pttControllerHost,
             fecAuto = prefs.getBoolean(Keys.FEC_AUTO, default.fecAuto),
+            useH265 = prefs.getBoolean(Keys.USE_H265, default.useH265),
             plutoApskCapable = prefs.getBoolean(Keys.PLUTO_APSK_CAPABLE, default.plutoApskCapable),
         ).let { it.copy(fecRate = it.modulationScheme.coerceFec(it.fecRate)).withAutoFec() } // 変調方式に無いFECは補正
     }
@@ -117,6 +119,7 @@ object SettingsStore {
             putFloat(Keys.SYMBOL_RATE_MSPS, settings.symbolRateMsps.toFloat())
             putString(Keys.FEC_RATE, settings.fecRate.name)
             putBoolean(Keys.FEC_AUTO, settings.fecAuto)
+            putBoolean(Keys.USE_H265, settings.useH265)
             putBoolean(Keys.PLUTO_APSK_CAPABLE, settings.plutoApskCapable)
             putString(Keys.MODULATION_SCHEME, settings.modulationScheme.name)
             putBoolean(Keys.USE_CUSTOM_LO_FREQUENCY, settings.useCustomLoFrequency)
