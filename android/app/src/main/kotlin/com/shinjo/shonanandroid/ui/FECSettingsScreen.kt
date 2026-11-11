@@ -96,6 +96,18 @@ fun FECSettingsScreen(viewModel: AppViewModel, onNavigate: (String) -> Unit) {
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,
                 )
+                // FEC自動: ONのときはシンボルレート・変調方式に合わせて自動で選ぶ(下のボタンは押せない)。
+                Button(
+                    onClick = { viewModel.updateSettings { s -> s.copy(fecAuto = !s.fecAuto) } },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (settings.fecAuto) AccentBlue else ChipBackground,
+                        contentColor = Color.White,
+                    ),
+                    shape = RoundedCornerShape(8.dp),
+                    modifier = Modifier.fillMaxWidth().height(30.dp),
+                ) {
+                    Text(settings.t("自動", "Auto"), fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                }
                 // DVB-S2規格で選択中の変調方式に定義されたFEC率だけを並べる(QPSKは11種類)
                 val rates = settings.modulationScheme.validFecRates
                 val rowsPerCol = (rates.size + 1) / 2
@@ -108,9 +120,12 @@ fun FECSettingsScreen(viewModel: AppViewModel, onNavigate: (String) -> Unit) {
                                 val selected = rate == current
                                 Button(
                                     onClick = { viewModel.updateSettings { s -> s.copy(fecRate = rate) } },
+                                    enabled = !settings.fecAuto,
                                     colors = ButtonDefaults.buttonColors(
                                         containerColor = if (selected) AccentBlue else ChipBackground,
                                         contentColor = Color.White,
+                                        disabledContainerColor = if (selected) Color(0xFF1E4E8F) else ChipBackground,
+                                        disabledContentColor = if (selected) Color(0xFFD0D8E8) else Color(0xFF6B7075),
                                     ),
                                     shape = RoundedCornerShape(8.dp),
                                     contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 4.dp),
@@ -136,7 +151,10 @@ fun FECSettingsScreen(viewModel: AppViewModel, onNavigate: (String) -> Unit) {
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 Text(
-                    settings.t("現在の設定: ${current.label}", "Current: ${current.label}"),
+                    settings.t(
+                        "現在の設定: ${current.label}（${if (settings.fecAuto) "自動" else "手動"}）",
+                        "Current: ${current.label} (${if (settings.fecAuto) "Auto" else "Manual"})",
+                    ),
                     color = Color.White,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,

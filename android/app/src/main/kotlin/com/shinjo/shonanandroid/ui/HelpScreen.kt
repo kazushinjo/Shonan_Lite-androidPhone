@@ -129,7 +129,7 @@ private val helpSections = listOf(
     ),
     HelpSection(
         "誤り訂正", "FEC",
-        "DVB-S2規格で変調方式ごとに定められた値(QPSK: 1/4〜9/10、8PSK: 3/5〜9/10、16APSK: 2/3〜9/10、32APSK: 3/4〜9/10)からボタンで選びます(直接入力はできません)。"
+        "DVB-S2規格で変調方式ごとに定められた値(QPSK: 1/4〜9/10、8PSK: 3/5〜9/10、16APSK: 2/3〜9/10、32APSK: 3/4〜9/10)からボタンで選びます(直接入力はできません)。FEC画面の「自動」をONにすると(既定はON)、シンボルレートや変調方式を変えるたびに、映像を400 kbps以上で送れる範囲で最も誤りに強いFECが自動で選ばれます。相手局がFECを手で決めている場合は「自動」をOFFにして合わせてください。"
             + "送信と受信は同じ設定を共有します。",
         "Choose from the rates DVB-S2 defines for the modulation (QPSK: 1/4-9/10; 8PSK: 3/5-9/10; 16APSK: 2/3-9/10; 32APSK: 3/4-9/10) with the buttons (no direct numeric entry). Transmit and Receive "
             + "share the same setting.",
