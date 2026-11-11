@@ -193,12 +193,14 @@ private val helpSections = listOf(
             + "オンデバイス復調をONにすると、Pluto1台でRFのループバック試験ができます"
             + "(画像を送信しながら同時にその画像を受信します)。外部アッテネータなしで行うと"
             + "Plutoを破損する恐れがあるため、有効化時に必ず警告が表示されます。"
+            + "「Pluto 情報」の「バージョン」「セッティング」「AD9361」を押すと、送信先のPlutoからファームの版・型式、Web UIのsettings.txt(送信時にアプリが書き込む値)、AD9361の周波数・ゲイン等17項目を読み取って表示します(読み取りのみで、Plutoには何も書き込みません)。"
             + "「PA_Power/PTTコントローラ (ESP32)」で「ESP32 W5500を使用する」をONにしてESP32のIPアドレスを入力すると、送信開始/終了に連動してPTTを、アプリ起動の5秒後とアプリ終了時に12V電源(Pluto含む)を自動でON/OFFします(ESP32が応答しなくても送受信はそのまま行います)。",
         "Set the display language (all screens except Home) and whether on-device demodulation "
             + "(GNU Radio) is enabled. Enabling it lets you run an RF loopback test with a single "
             + "Pluto: you transmit an image while simultaneously receiving that same image. Doing so "
             + "without an external attenuator can damage the Pluto, so a warning is always shown "
             + "before enabling it. "
+            + "Under \"Pluto Info\", \"Version\", \"Settings\" and \"AD9361\" read and show the firmware version and model of the Pluto at the TX destination, the Web UI settings.txt (the values this app writes on TX) and 17 AD9361 values such as frequencies and gains (read only; nothing is written to the Pluto). "
             + "Turn on \"Use ESP32 W5500\" under \"PA_Power/PTT Controller (ESP32)\" and enter the ESP32's IP address to switch PTT with TX start/stop, and the 12 V power (including the Pluto) 5 seconds after app start and at app exit (TX/RX still work if the ESP32 does not respond).",
     ),
     HelpSection(

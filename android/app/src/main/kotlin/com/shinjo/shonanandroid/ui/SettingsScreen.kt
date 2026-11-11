@@ -125,6 +125,8 @@ fun SettingsScreen(viewModel: AppViewModel, onNavigate: (String) -> Unit) {
                 )
             }
 
+            PlutoInfoSection(settings)
+
             Text(settings.t("PA_Power/PTTコントローラ (ESP32)", "PA_Power/PTT Controller (ESP32)"), style = MaterialTheme.typography.titleMedium)
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Switch(
