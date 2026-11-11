@@ -46,15 +46,27 @@ private val ConstellationBorder = Color(0xFF46545B)
 private val AxisColor = Color(0xFF8397A0)
 private val PointColor = Color(0xFF38B8E3)
 
-/** pi5モックに合わせた変調方式一覧(実際に対応しているのは[ModulationScheme]の2種のみ)。 */
+/** pi5に合わせた変調方式一覧(DVB-S2のQPSK・8PSK・16APSK・32APSK)。 */
 private data class MockScheme(val label: String, val bitsPerSymbol: Int, val scheme: ModulationScheme?)
 
 private val mockSchemes = listOf(
     MockScheme("QPSK", 2, ModulationScheme.QPSK),
     MockScheme("8PSK", 3, ModulationScheme.PSK8),
+    MockScheme("16APSK", 4, ModulationScheme.APSK16),
+    MockScheme("32APSK", 5, ModulationScheme.APSK32),
 )
 
+/** APSKのリング(点の数, 半径の比, 最初の点の角度)。DVB-S2規格のリング構成(代表的な半径比)。 */
+private fun apskPoints(rings: List<Triple<Int, Double, Double>>): List<Offset> = rings.flatMap { (count, scale, start) ->
+    (0 until count).map { i ->
+        val angle = start + 2 * Math.PI * i / count
+        Offset((cos(angle) * scale).toFloat(), (sin(angle) * scale).toFloat())
+    }
+}
+
 private fun constellationPoints(label: String): List<Offset> = when (label) {
+    "16APSK" -> apskPoints(listOf(Triple(4, 0.32, Math.PI / 4), Triple(12, 1.0, Math.PI / 12)))
+    "32APSK" -> apskPoints(listOf(Triple(4, 0.19, Math.PI / 4), Triple(12, 0.54, Math.PI / 12), Triple(16, 1.0, 0.0)))
     "QPSK" -> listOf(Offset(-.72f, -.72f), Offset(.72f, -.72f), Offset(-.72f, .72f), Offset(.72f, .72f))
     else -> {
         val count = when (label) {
@@ -120,7 +132,7 @@ fun ModulationSettingsScreen(viewModel: AppViewModel, onNavigate: (String) -> Un
                         val enabled = mock.scheme != null
                         Button(
                             onClick = {
-                                mock.scheme?.let { scheme -> viewModel.updateSettings { s -> s.copy(modulationScheme = scheme) } }
+                                mock.scheme?.let { scheme -> viewModel.updateSettings { s -> s.copy(modulationScheme = scheme, fecRate = scheme.coerceFec(s.fecRate)) } }
                             },
                             enabled = enabled,
                             colors = ButtonDefaults.buttonColors(

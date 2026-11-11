@@ -41,12 +41,12 @@ private val txSteps = listOf(
         "On the Symbol Rate tab, set the symbol rate (must match the receiver).",
     ),
     HelpStep(
-        "「誤り訂正」タブでFEC(1/2・3/5・8/9)を選ぶ(相手と一致させる)",
-        "On the FEC tab, choose the code rate (1/2, 3/5, or 8/9); it must match the receiver.",
+        "「誤り訂正」タブでFECを選ぶ(相手と一致させる)",
+        "On the FEC tab, choose the code rate; it must match the receiver.",
     ),
     HelpStep(
-        "「変調方式」タブで変調方式(QPSK・8PSK)を選ぶ(相手と一致させる)",
-        "On the Modulation tab, choose QPSK or 8PSK; it must match the receiver.",
+        "「変調方式」タブで変調方式(QPSK・8PSK・16APSK・32APSK)を選ぶ(相手と一致させる)",
+        "On the Modulation tab, choose QPSK, 8PSK, 16APSK or 32APSK; it must match the receiver.",
     ),
     HelpStep(
         "「配信先」タブでPluto TxのIPアドレスを確認する(初回のみ。実機宛て送信時は送信先ポートの"
@@ -129,16 +129,16 @@ private val helpSections = listOf(
     ),
     HelpSection(
         "誤り訂正", "FEC",
-        "1/2・3/5・8/9のいずれかをボタンで選びます(直接入力はできません)。"
+        "DVB-S2規格で変調方式ごとに定められた値(QPSK: 1/4〜9/10、8PSK: 3/5〜9/10、16APSK: 2/3〜9/10、32APSK: 3/4〜9/10)からボタンで選びます(直接入力はできません)。"
             + "送信と受信は同じ設定を共有します。",
-        "Choose 1/2, 3/5, or 8/9 with the buttons (no direct numeric entry). Transmit and Receive "
+        "Choose from the rates DVB-S2 defines for the modulation (QPSK: 1/4-9/10; 8PSK: 3/5-9/10; 16APSK: 2/3-9/10; 32APSK: 3/4-9/10) with the buttons (no direct numeric entry). Transmit and Receive "
             + "share the same setting.",
     ),
     HelpSection(
         "変調方式", "Modulation",
-        "QPSK・8PSKのどちらかをボタンで選びます(直接入力はできません)。"
+        "QPSK・8PSK・16APSK・32APSKのいずれかをボタンで選びます(直接入力はできません)。16APSK・32APSKは受信側に高いC/Nが必要です。"
             + "右側にコンステレーション(信号点配置)が表示されます。送信と受信は同じ設定を共有します。",
-        "Choose QPSK or 8PSK with the buttons (no direct numeric entry). The constellation "
+        "Choose QPSK, 8PSK, 16APSK or 32APSK with the buttons (no direct numeric entry); 16APSK and 32APSK need a high C/N. The constellation "
             + "diagram is shown on the right. Transmit and Receive share the same setting.",
     ),
     HelpSection(

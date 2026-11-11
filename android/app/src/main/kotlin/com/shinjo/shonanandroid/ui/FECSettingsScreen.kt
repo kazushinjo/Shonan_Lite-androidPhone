@@ -96,7 +96,8 @@ fun FECSettingsScreen(viewModel: AppViewModel, onNavigate: (String) -> Unit) {
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,
                 )
-                val rates = FECRate.entries
+                // DVB-S2規格で選択中の変調方式に定義されたFEC率だけを並べる(QPSKは11種類)
+                val rates = settings.modulationScheme.validFecRates
                 val rowsPerCol = (rates.size + 1) / 2
                 (0 until rowsPerCol).forEach { row ->
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
