@@ -91,6 +91,8 @@ fun ModulationSettingsScreen(viewModel: AppViewModel, onNavigate: (String) -> Un
     val settings = viewModel.settings
     val currentLabel = settings.modulationScheme.label
     val currentMock = mockSchemes.firstOrNull { it.label == currentLabel } ?: mockSchemes[1]
+    // 画面を開いたら、接続中のPlutoのファームを調べ直す(8PSKまで/32APSKまで)。
+    androidx.compose.runtime.LaunchedEffect(Unit) { viewModel.refreshPlutoCapability() }
 
     SettingsSubScreen(
         title = settings.t("変調方式", "Modulation"),
@@ -129,7 +131,8 @@ fun ModulationSettingsScreen(viewModel: AppViewModel, onNavigate: (String) -> Un
                     )
                     mockSchemes.forEach { mock ->
                         val selected = mock.scheme != null && mock.scheme == settings.modulationScheme
-                        val enabled = mock.scheme != null
+                        // 16APSK・32APSKはPluto+のFPGA版ファームのときだけ選べる。
+                        val enabled = mock.scheme != null && mock.scheme in settings.availableModulationSchemes
                         Button(
                             onClick = {
                                 mock.scheme?.let { scheme -> viewModel.updateSettings { s -> s.copy(modulationScheme = scheme, fecRate = scheme.coerceFec(s.fecRate)) } }
@@ -153,6 +156,13 @@ fun ModulationSettingsScreen(viewModel: AppViewModel, onNavigate: (String) -> Un
                                 modifier = Modifier.fillMaxWidth(),
                             )
                         }
+                    }
+                    if (!settings.plutoApskCapable) {
+                        Text(
+                            settings.t("16APSK・32APSKはPluto+のFPGA版ファームのときだけ", "16APSK/32APSK need the Pluto+ FPGA firmware"),
+                            color = Color(0xFFAEB9BD),
+                            fontSize = 10.sp,
+                        )
                     }
                 }
 

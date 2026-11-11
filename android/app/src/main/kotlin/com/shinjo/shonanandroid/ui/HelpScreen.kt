@@ -136,7 +136,7 @@ private val helpSections = listOf(
     ),
     HelpSection(
         "変調方式", "Modulation",
-        "QPSK・8PSK・16APSK・32APSKのいずれかをボタンで選びます(直接入力はできません)。16APSK・32APSKは受信側に高いC/Nが必要です。"
+        "QPSK・8PSK・16APSK・32APSKのいずれかをボタンで選びます(直接入力はできません)。16APSK・32APSKを選べるのは、Pluto+のFPGA版ファームにつないだときだけです(アプリがPlutoのファームの版を調べて切り替え、無印PlutoやPluto+の通常版では8PSKまでになります。16APSK・32APSKを選んだままそれらのPlutoにつなぐと、8PSKに変えてお知らせします)。16APSK・32APSKは受信側に高いC/Nが必要です。"
             + "右側にコンステレーション(信号点配置)が表示されます。送信と受信は同じ設定を共有します。",
         "Choose QPSK, 8PSK, 16APSK or 32APSK with the buttons (no direct numeric entry); 16APSK and 32APSK need a high C/N. The constellation "
             + "diagram is shown on the right. Transmit and Receive share the same setting.",
